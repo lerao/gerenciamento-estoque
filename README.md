@@ -25,7 +25,7 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 # Time:
 1. Adailto Junior
 
-2. 
+2. Carlos Lucena
 
 3.
 
