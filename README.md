@@ -24,23 +24,47 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 # Time:
 1. Adailto Junior
+
+2. 
+
 3.
+
 4.
+
 5.
-6.
-7.
+
+6. Marcos Vinicius
+
+7. Ana Catarina
+
 8.
+
 9.
+
 10.
+
 11.
+
 12.
-13.
+
+13. Eduardo Sales
+
 14.
+
 15. Wanderson lima
-16.
+
+16. Adeildo Neto
+
 17. RosÂngela Lima
+
 18.
+
 19.
+
+18.
+
+19. Thiago Anízio
+
 20.
 21.
 22.
