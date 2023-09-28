@@ -29,7 +29,7 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 3.
 
-4.
+4. Anderson da Silva Muniz
 
 5.
 
@@ -37,13 +37,13 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 7. Ana Catarina
 
-8.Dienison Silvestre de Aquino
+8.
 
-9.Daniel Verissimo da Silva
+9.
 
-10.Marcelo Augusto Teixeira Barbosa
+10.
 
-11. Davi Cavalcante 
+11.
 
 12. Adeilton Barros
 
