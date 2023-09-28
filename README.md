@@ -66,8 +66,8 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 19. Thiago Anízio
 
 20.
-21.
-22.
+21. 
+22. Ryan Inácio
 23.
 24.
 25.
