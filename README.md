@@ -29,21 +29,21 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 3.
 
-4.
+4. Anderson da Silva Muniz
 
-5.
+5. Cristian Alves
 
 6. Marcos Vinicius
 
 7. Ana Catarina
 
-8.Dienison Silvestre de Aquino
+8.
 
-9.Daniel Verissimo da Silva
+9.
 
-10.Marcelo Augusto Teixeira Barbosa
+10.
 
-11. Davi Cavalcante 
+11.
 
 12. Adeilton Barros
 
@@ -61,13 +61,13 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 19.
 
-18.
+18.Jéssica Vanessa de Almeida Leal
 
 19. Thiago Anízio
 
 20.
-21. 
-22. Ryan Inácio
+21. Ryan Inácio
+22. Byanca Alexandra
 23.
 24.
 25.
