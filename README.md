@@ -46,7 +46,7 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 6. Marcos Vinicius
 
-7.
+7. Ana Catarina
 
 8.
 
