@@ -58,9 +58,9 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 12.
 
-13.
+13. Eduardo Sales
 
-14.
+14. 
 
 15.
 
