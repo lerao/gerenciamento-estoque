@@ -67,7 +67,7 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 20.
 21.
-22.
+22. Byanca Alexandra
 23.
 24.
 25.
