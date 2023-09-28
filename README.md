@@ -48,11 +48,11 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 7.
 
-8.
+8.Dienison Silvestre de Aquino
 
-9.
+9.Daniel Verissimo da Silva
 
-10.
+10.Marcelo Augusto Teixeira Barbosa
 
 11.
 
