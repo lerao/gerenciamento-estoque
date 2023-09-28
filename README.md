@@ -61,12 +61,12 @@ Projeto para teste de conhecimentos da disciplina de Programação em Novas Tecn
 
 19.
 
-18.
+18.Jéssica Vanessa de Almeida Leal
 
 19. Thiago Anízio
 
 20.
-21. Ryan Inácio
+21.
 22. Byanca Alexandra
 23.
 24.
