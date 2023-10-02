@@ -7,21 +7,21 @@ Gerenciamento de Estoque
 
 1 - Estrutura padrão (menus, layout)
 
-2 - Cadastro de Produtos
+2 - Cadastro de Produtos (Adailto)
 
-3 - Cadastro de Unidades/Lojas
+3 - Cadastro de Unidades/Lojas ()
 
-4 - Cadastro de Categorias
+4 - Cadastro de Categorias ()
 
-5 - Cadastro de Fornecedores
+5 - Cadastro de Fornecedores (Carlos,Fabiana,Eduardo Ferro)
 
-6 - Cadastro de Clientes
+6 - Cadastro de Clientes (Anderson, Cristian, M.Vinicius, A.Catarina)
 
-7 - Cadastro de Vendedores
+7 - Cadastro de Vendedores (Adeilton, Davi)
 
-8 - Cadastro de Pontos de Vendas
+8 - Cadastro de Vendas ()
 
-9 - Cadastro de Permissões/Perfis de Acesso 
+9 - Cadastro de Permissões/Perfis de Acesso (Jéssica, Wilhames)
 
 10 - Relatórios (Gerenciamento de Estoque, Vendas, Financeiro, etc)
 
