@@ -9,9 +9,9 @@ Gerenciamento de Estoque
 
 2 - Cadastro de Produtos (Adailto)
 
-3 - Cadastro de Unidades/Lojas ()
+3 - Cadastro de Unidades/Lojas (Bianca, Ryan)
 
-4 - Cadastro de Categorias ()
+4 - Cadastro de Categorias (Y.Baruk, T.Anízio)
 
 5 - Cadastro de Fornecedores (Carlos,Fabiana,Eduardo Ferro)
 
@@ -19,7 +19,7 @@ Gerenciamento de Estoque
 
 7 - Cadastro de Vendedores (Adeilton, Davi)
 
-8 - Cadastro de Vendas ()
+8 - Cadastro de Vendas (PDV) (Eduardo Sales)
 
 9 - Cadastro de Permissões/Perfis de Acesso (Jéssica, Wilhames)
 
@@ -27,7 +27,7 @@ Gerenciamento de Estoque
 
 11 - Tela de Logins
 
-12 - Controle de Atividades/Tasks
+12 - Controle de Atividades/Tasks (Quadro Kanban) - (Marcelo, Dienison, Daniel, Lindomar, Victor G.)
 
 # Descrição 
 
