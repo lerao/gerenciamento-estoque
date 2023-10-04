@@ -310,9 +310,15 @@
 
             listaDeClientes.push(novoCliente);
             $('#cadastroModal').modal('hide');
+
+            document.getElementById("nome").value = "";
+            document.getElementById("tipo").value = "";
+            document.getElementById("documento").value = "";
+            document.getElementById("endereco").value = "";
+
             atualizarTabelaClientes();
         }
-
+        
         function atualizarTabelaClientes() {
             const tabelaClientes = document.getElementById("tabela-clientes");
             tabelaClientes.innerHTML = "";
