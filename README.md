@@ -19,7 +19,7 @@ Gerenciamento de Estoque
 
 7 - Cadastro de Vendedores (Adeilton, Davi)
 
-8 - Cadastro de Vendas (PDV) (Eduardo Sales)
+8 - Cadastro de Vendas (PDV) (Eduardo Sales, Adeildo)
 
 9 - Cadastro de Permissões/Perfis de Acesso (Jéssica, Wilhames)
 
