@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Atividades</title>
+
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .column {
+            flex: 1;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .task {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Status de Atividades</h2>
+
+    <div class="container">
+        <div class="column">
+            <h3>A fazer</h3>
+            <div class="task">Tarefa 1</div>
+            <div class="task">Tarefa 2</div>
+            <div class="task">Tarefa 3</div>
+        </div>
+        <div class="column">
+            <h3>Em andamento</h3>
+            <div class="task">Tarefa 4</div>
+            <div class="task">Tarefa 5</div>
+        </div>
+        <div class="column">
+            <h3>Concluído</h3>
+            <div class="task">Tarefa 6</div>
+            <div class="task">Tarefa 7</div>
+            <div class="task">Tarefa 8</div>
+        </div>
+        <div class="column">
+            <h3>Controle de Tarefas</h3>
+            <div class="task">Máximo - Quantidade: 10</div>
+            <div class="task">Em execução - Quantidade: 5</div>
+            <div class="task">Total - Quantidade: 8</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
