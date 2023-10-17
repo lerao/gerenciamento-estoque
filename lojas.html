@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>:: Gerenciamento de Estoque ::</title>
+
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylelojas.css">
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    
+    <div id="main-wrapper">
+    
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i>Menu</a>
+                    
+                    <a class="navbar-brand" href="index.html">
+                        <b class="logo-icon p-l-10">
+                            <img src="Icons/png/caixa.png" alt="Ícone PNG" style="width: 30%;"> ESTOQUE
+                        </b>
+                    </a>
+                    
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+
+                </div>
+                
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                   
+                    <ul class="navbar-nav float-left mr-auto">
+                        
+                    </ul>
+                    
+                    <ul class="navbar-nav float-right"> 
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+                    
+                    <ul id="sidebarnav" class="p-t-30">
+                        
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html" 
+                            aria-expanded="false">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>                     
+                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="lojas.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-map-marker"></i>
+                                <span class="hide-menu">Lojas</span>
+                            </a>
+                        </li>
+  
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        
+        <div class="page-wrapper">
+           
+        <h2>Unidades e Lojas</h2>
+        
+        <div class="container-fluid">
+            <br>
+        
+            <form id="cadastroLoja">
+                <div class="form-group">
+                    <label for="nomeLoja">Nome da Loja:</label>
+                    <input type="text" maxlength="20" placeholder="Digite o nome da loja:" minlength="4" id="nomeLoja" name="nomeLoja" required>
+                </div>
+
+
+                <label for="uf">Estado</label>
+                <select id="uf">
+                    <option></option>
+                </select>
+                <label for="cidade">Cidade</label>
+                <select id="cidade">
+                    <option></option>
+                </select>
+        
+                <div class="form-group">
+                    <label for="Endereco">Endereço:</label>
+                    <input type="text" id="Endereco" name="Endereco" placeholder="Digite Endereço:" required>
+                    <div id="errorEndereco" class="error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">E-mail:</label>
+                    <input type="email" id="Email" name="Email" placeholder="Digite seu E-mail:" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="telefoneLoja">Telefone:</label>
+                    <input type="tel" id="telefoneLoja" name="telefoneLoja" pattern="[0-9]{9}" inputmode="numeric" required placeholder="Digite Número de Telefone:">
+                    <small>Informe apenas números (exemplo: 87-xxxx-xxxx).</small>
+                </div>
+        
+                <button type="submit" class="btn btn-dark">Cadastrar loja</button>
+            </form>
+        </div>
+
+    </head>
+
+<br>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome da Loja:</th>
+                <th>Endereço:</th>
+                <th>Cidade:</th>
+                <th>Estado:</th>
+                <th>E-mail:</th>
+                <th>Número de Telefone:</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Val Peças</td>
+            <td>Rua das Flores 44  Boa Vista</td>
+            <td>Garanhuns</td>
+            <td>Pernambuco</td>
+            <td>valpecas@hotmail.com</td>
+            <td>87 9999-9999</td>
+        </tr>
+        <tr>
+            <td>AmigoPet</td>
+            <td>Avenida Sul 67</td>
+            <td>Recife</td>
+            <td>Pernambuco</td>
+            <td>seuamigopet@gmail.com</td>
+            <td>81 9100-0000</td>
+        </tr>
+        <tr>
+            <td>Val Assistência</td>
+            <td>Rua Duque De Caxias</td>
+            <td>Mossoró</td>
+            <td>RN</td>
+            <td>valassistencia@gmail.com</td>
+            <td>84 9600-0000</td>
+        </tr>
+        <tr>
+            <td>Mercadinho Alfredo</td>
+            <td>Rua Tirandetes 200</td>
+            <td>Garanhuns</td>
+            <td>PE</td>
+            <td></td>
+            <td>87 3761-xxxx</td>
+        </tr>
+    </table>
+    </body>
+    </html>
+    
+</tr>
+</tbody>
+</table>
+</body>
+</html>
+
+            </thead>
+        </table>
+    
+    </body>
+
+    </table>
+        
+        <script>
+            const ufSelect = document.getElementById("uf");
+            const cidadeSelect = document.getElementById("cidade");
+        
+            fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(uf => {
+                        const option = document.createElement("option");
+                        option.value = uf.sigla;
+                        option.text = uf.sigla;
+                        ufSelect.appendChild(option);
+                    });
+                });
+        
+            ufSelect.addEventListener('change', async function () {
+                const urlCidades = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufSelect.value}/municipios`; 
+                const request = await fetch(urlCidades);
+                const responseJson = await request.json();
+        
+                cidadeSelect.innerHTML = '<option></option>'; 
+        
+                responseJson.forEach(function (cidade) {
+                    const option = document.createElement("option");
+                    option.value = cidade.nome;
+                    option.text = cidade.nome; 
+                    cidadeSelect.appendChild(option); 
+                });
+            });
+        
+            const form = document.getElementById('cadastroLoja');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+        
+                const nomeLoja = document.getElementById('nomeLoja').value;
+                const endereco = document.getElementById('Endereco').value;
+                const email = document.getElementById('Email').value;
+                const telefoneLoja = document.getElementById('telefoneLoja').value;
+        
+                if (!endereco.includes(',')) {
+                    document.getElementById("errorEndereco").innerHTML = "O campo de endereço deve conter pelo menos uma vírgula.";
+                    return false;
+                } else {
+                    document.getElementById("errorEndereco").innerHTML = "";
+                }
+        
+                if (telefoneLoja.length !== 9 || isNaN(telefoneLoja)) {
+                    document.getElementById("errorTelefoneLoja").innerHTML = "O telefone deve ter nove dígitos e ser um número válido.";
+                    document.getElementById("errorTelefoneLoja").style.display = "block";
+                    return false;
+                } else {
+                    document.getElementById("errorTelefoneLoja").style.display = "none";
+                }
+
+                fetch('https://your-api-url.com/api/lojas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nomeLoja: nomeLoja,
+                        endereco: endereco,
+                        telefoneLoja: telefoneLoja
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Loja cadastrada com sucesso!');
+                        form.reset();
+                    } else {
+                        alert('Erro ao cadastrar loja. Tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Erro ao cadastrar loja. Tente novamente.');
+               
+               
+                });
+    
+                const mensagem = `Nome da Loja: ${nomeLoja}\nEndereço: ${endereco}\nTelefone: ${telefoneLoja}`;
+                alert(mensagem);
+    
+                form.reset();
+            });
+        
+            function validarEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+
+        </script>
+            <hr>
+            <footer class="footer text-center">
+                Todos os direitos reservados para a turma DS 2023.2 ETEAVS ❤.
+            </footer>
+        
+   </div>
+
+   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
+    <script src="dist/js/jquery-ui.min.js"></script>
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="dist/js/waves.js"></script>
+    <script src="dist/js/sidebarmenu.js"></script>
+    <script src="dist/js/custom.min.js"></script>
+    <script src="assets/libs/moment/min/moment.min.js"></script>
+
+</body>
+</html>
