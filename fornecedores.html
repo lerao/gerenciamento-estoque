@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>:: Gerenciamento de Estoque ::</title>
+
+    <link href="dist/css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+
+    <div id="main-wrapper">
+
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+
+                    <a class="navbar-brand" href="dashboard.html">
+                        <b class="logo-icon p-l-10">
+                            <img src="Icons/png/caixa.png" alt="Ícone PNG" style="width: 30%;"> ESTOQUE
+                        </b>
+                    </a>
+
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+                    <ul class="navbar-nav float-left mr-auto">
+
+                    </ul>
+
+                    <ul class="navbar-nav float-right">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                        class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.html"><i class="fa fa-power-off m-r-5 m-l-5"></i>
+                                    Logout</a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+
+                    <ul id="sidebarnav" class="p-t-30">
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clientes.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-account"></i>
+                                <span class="hide-menu">Clientes</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="produtos.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Produtos</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="fornecedores.html" aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Fornecedores</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <h2> Cadastro de Fornecedores</h2>
+                <form id="supplierForm">
+                    <label for="Name">RAZÃO SOCIAL</label>
+                    <input type="text" id="Nome" required><br><br>
+
+                    <label for="CNPJ">CNPJ</label>
+                    <input type="number" id="CNPJ" required><br><br>
+
+                    <label for="nome_fantasia">NOME FANTASIA</label>
+                    <input type="text" id="nome_fantasia" required><br><br>
+
+                    <label for="contato">CONTATO</label>
+                    <input type="text" id="contato" required><br><br>
+
+                    <label for="endereço">ENDEREÇO</label>
+                    <input type="text" id="Endereço" required><br><br>
+
+                    <button type="button" onclick="registerSupplier()">Registrar</button>
+                </form>
+
+                
+                
+                <script>
+                    function registerSupplier() {
+                        const Name = document.getElementById("Name").value;
+                        const CNPJ = document.getElementById("CNPJ").value;
+                        const nome_fantasia = document.getElementById("nome_fantasia").value;
+                        const contato = document.getElementById("contato").value;
+                        const Endereço = document.getElementById("Endereço").value;
+
+
+
+                        // Criar uma nova linha para a tabela com os dados do fornecedor
+                        const table = document.getElementById("supplierTable").getElementsByTagName('tbody')[0];
+                        const newRow = table.insertRow(table.rows.length);
+                        const cell1 = newRow.insertCell(0);
+                        const cell2 = newRow.insertCell(1);
+                        const cell3 = newRow.insertCell(2);
+                        const cell4 = newRow.insertCell(3);
+                        const cell5 = newRow.insertCell(4);
+                        const cell6 = newRow.insertCell(5);
+
+
+
+                        
+                        cell1.innerHTML = Name;
+                        cell2.innerHTML = CNPJ;
+                        cell3.innerHTML = nome_fantasia;
+                        cell4.innerHTML = contato;
+                        cell5.innerHTML = Endereço;
+                        cell6.innerHTML = '<button onclick="editSupplier(this)">Editar</button>';
+
+                        // Limpe o formulário
+                        document.getElementById("Name").value = '';
+                        document.getElementById("CNPJ").value = '';
+                        document.getElementById("nome_fantasia").value = '';
+                        document.getElementById("contato").value = '';
+                        document.getElementById("Endereço").value = '';
+                    }
+                    // ainda falta fazer 
+                    function editSupplier(button) {
+                        const row = button.parentElement.parentElement;
+                        const Name = row.cells[0].innerHTML;
+                        const CNPJ = row.cells[1].innerHTML;
+                        const nome_fantasia = row.cells[2].innerHTML;
+                        const contato = row.cells[3].innerHTML;
+                        const Endereço = row.cells[4].innerHTML;
+
+                        // Preencha o formulário com os dados para edição
+                        document.getElementById("Name").value = supplierName;
+                        document.getElementById("CNPJ").value = supplierContact;
+                        document.getElementById("nome_fantasia").value = supplierContact;
+                        document.getElementById("contato").value = supplierContact;
+                        document.getElementById("Endereço").value = supplierContact;
+
+                        // Remova a linha da tabela
+                        row.remove();
+                    }
+                </script>
+                <div class="card" style="background-color: #eee;">
+                    
+                    <div class="table-responsive">
+                        <table  id="supplierTable" class="table table-striped table-bordered table-dark" >
+                            <thead>
+                                <tr>
+                                    <th>Razação social</th>
+                                    <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
+                                    <th>Contato</th>
+                                    <th>Endereço</th>
+                                </tr>
+                            </thead>
+                            <tbody id="supplierTable">
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+
+
+                <footer class="footer text-center">
+                    Todos os direitos reservados para a turma DS 2023.2 ETEAVS ❤.
+                </footer>
+
+            </div>
+        </div>
+
+        <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
+        <script src="dist/js/jquery-ui.min.js"></script>
+        <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+        <script src="dist/js/waves.js"></script>
+        <script src="dist/js/sidebarmenu.js"></script>
+        <script src="dist/js/custom.min.js"></script>
+        <script src="assets/libs/moment/min/moment.min.js"></script>
+
+</body>
+
+</html>
+
