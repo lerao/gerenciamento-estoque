@@ -1,22 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50736
- Source Host           : localhost:3306
- Source Schema         : estoque
-
- Target Server Type    : MySQL
- Target Server Version : 50736
- File Encoding         : 65001
-
- Date: 19/10/2023 21:37:04
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
 -- ----------------------------
 -- Table structure for categorias
 -- ----------------------------
@@ -106,5 +87,3 @@ CREATE TABLE `produtos_precos`  (
   `data_fim` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;

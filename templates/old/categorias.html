@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-BR">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>:: Gerenciamento de Estoque ::</title>
-
+    <title>:: Cadastro de Categorias ::</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="dist/css/style.min.css" rel="stylesheet">
-
 </head>
 
 <body>
-
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
     </div>
-    
+
     <div id="main-wrapper">
-    
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin5">
@@ -63,7 +61,7 @@
                 </div>
             </nav>
         </header>
-        
+
         <aside class="left-sidebar" data-sidebarbg="skin5">
 
             <div class="scroll-sidebar">
@@ -94,26 +92,77 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categorias.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Categorias</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fornecedores.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Fornecedores</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="lojas.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Lojas</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="vendedores.html.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-package"></i>
+                                <span class="hide-menu">Vendedores</span>
+                            </a>
+                        </li>
+
+
+
                     </ul>
                 </nav>
             </div>
         </aside>
-        
-        <div class="page-wrapper">
-            
-            
-            <div class="container-fluid">
-                <h2>Título da página</h2>
-            </div>
-            
-            <footer class="footer text-center">
-                Todos os direitos reservados para a turma DS 2023.2 ETEAVS ❤.
-            </footer>
-            
-        </div>
-   </div>
 
-   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+        <br><br>
+        <div class="container">
+            <h2>Cadastro de Categorias</h2>
+            <form id="categoriaForm">
+                <div class="form-group">
+                    <label for="nomeCategoria">Nome da Categoria:</label>
+                    <input type="text" class="form-control" id="nomeCategoria" placeholder="Ex: limpeza" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar Categoria</button>
+            </form>
+
+            <h2>Lista de Categorias</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome da Categoria</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaCategorias">
+                    <!-- As categorias serão inseridas aqui dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="categorias.js"></script>
+
+    </div>
+
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
     <script src="dist/js/jquery-ui.min.js"></script>
     <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -124,7 +173,6 @@
     <script src="dist/js/sidebarmenu.js"></script>
     <script src="dist/js/custom.min.js"></script>
     <script src="assets/libs/moment/min/moment.min.js"></script>
-
 </body>
 
 </html>
