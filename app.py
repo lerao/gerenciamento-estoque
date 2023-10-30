@@ -18,7 +18,7 @@ def logout():
 
 @app.route("/clientes")
 def clientes():
-  return render_template("dashboard.html")
+  return render_template("clientes.html")
 
 @app.route("/produtos")
 def produtos():
