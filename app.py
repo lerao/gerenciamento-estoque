@@ -38,7 +38,7 @@ def fornecedores():
 
 @app.route("/lojas")
 def lojas():
-  return render_template("dashboard.html")
+  return render_template("lojas.html")
 
 @app.route("/categorias")
 def categorias():
