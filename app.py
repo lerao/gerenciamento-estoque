@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import json
 import database as db
 
@@ -45,7 +45,37 @@ def categorias():
   bd = db.SQLiteConnection('estoque.db')
   bd.connect()
   categorias = bd.execute_query("select * from categorias;")
-  return render_template("categorias.html", dados=categorias)
+  print(categorias)
+  return render_template("categorias.html", dados=categorias, categoria=(0,0))
+
+@app.route("/categoria/save", methods=["POST"])
+def categoriaSave():
+  nome = request.form['nomeCategoria']
+  id = request.form['id']
+  bd = db.SQLiteConnection('estoque.db')
+  bd.connect()
+  if id:
+    query = f"UPDATE categorias SET nome ='{nome}' WHERE id = {id}"
+  else:
+    query = f"INSERT INTO categorias (nome) VALUES ('{nome}')"
+  print(query)
+  bd.execute_query(query)
+  return redirect(url_for('categorias'))
+  
+@app.route("/categoria/delete/<id>")
+def categoriaDelete(id):
+  bd = db.SQLiteConnection('estoque.db')
+  bd.connect()
+  bd.execute_query(f"DELETE FROM categorias WHERE id = {id}")
+  return redirect(url_for('categorias'))
+
+@app.route("/categoria/edit/<id>")
+def categoriaEdit(id):
+  bd = db.SQLiteConnection('estoque.db')
+  bd.connect()
+  query = f"select id, nome from categorias where id = {id};"
+  nome = bd.execute_query(query)
+  return render_template("categorias.html", categoria=nome)
 
 @app.route("/setup")
 def setup():
