@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import json
+from cliente import clientes_blueprint
 import database as db
 
 app = Flask(__name__)
@@ -16,9 +17,7 @@ def login():
 def logout():
   return render_template("login.html")
 
-@app.route("/clientes")
-def clientes():
-  return render_template("dashboard.html")
+app.register_blueprint(clientes_blueprint)
 
 @app.route("/produtos")
 def produtos():
