@@ -4,7 +4,7 @@ import database as db;
 
 clientes_blueprint = Blueprint('clientes', __name__)
 
-@clientes_blueprint.route("/clientes", methods=["GET"])
+@clientes_blueprint.route("/clientes")
 def listar_clientes():
     bd = db.SQLiteConnection('estoque.db')
     bd.connect()
