@@ -9,8 +9,15 @@ categorias_blueprint = Blueprint('categorias', __name__)
 def categorias():
   bd = db.SQLiteConnection('estoque.db')
   bd.connect()
-  categorias = bd.execute_query("select * from categorias;")
-  print(categorias)
+  categorias = bd.execute_query("select id, nome from categorias;")
+  dictList=[]
+  for categoria in categorias:
+    categoria_dict = {
+        'id': categoria[0],
+        'nome': categoria[1],
+        # Adicione outras colunas conforme necessário
+    }
+    dictList.append(categoria_dict)
   return render_template("categorias.html", dados=categorias, categoria=(0,0))
 
 @categorias_blueprint.route("/categoria/save", methods=["POST"])
@@ -41,3 +48,27 @@ def categoriaEdit(id):
   query = f"select id, nome from categorias where id = {id};"
   nome = bd.execute_query(query)
   return render_template("categorias.html", categoria=nome)
+
+
+@categorias_blueprint.route("/categorias/list")
+def categoriasList():
+  # Conecto ao meu banco de dados de nome 'estoque'
+  bd = db.SQLiteConnection('estoque.db')
+  bd.connect()
+  
+  # Executo a query para listar todas as categorias
+  # Método padrão, que vai ao banco, realiza a consulta e devolve uma
+  # lista/tupla com os dados
+  categorias = bd.execute_query("select id, nome from categorias;")
+
+  #Uma lista de dicionário para pecorrer cada elemento 
+  # e converter em um dicionário que vai ser devolvido como json
+  dictList=[]
+  for categoria in categorias:
+    categoria_dict = {
+        'id': categoria[0],
+        'nome': categoria[1],
+    }
+    dictList.append(categoria_dict)
+  
+  return dictList
