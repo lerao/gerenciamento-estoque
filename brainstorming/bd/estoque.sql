@@ -88,11 +88,13 @@ CREATE TABLE `produtos_precos`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `clientes_bd` (
+CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `nome` varchar(80) NOT NULL,
+  `tipo` varchar(20) NOT NULL,
   `documento` varchar(16),
   `endereco` varchar(50),
   `telefone` varchar(20),
-  `data_nascimento` date
+  `data_nascimento` date,
+  PRIMARY KEY (`id`)
 );
