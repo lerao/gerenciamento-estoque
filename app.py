@@ -6,6 +6,8 @@ from categorias import categorias_blueprint
 from usuarios import usuarios_blueprint
 from lojas import lojas_blueprint
 from fornecedores import fornecedores_blueprint
+from permissoes import permissoes_blueprint
+from atividades import atividades_blueprint
 import database as db
 
 app = Flask(__name__)
@@ -43,6 +45,8 @@ app.register_blueprint(categorias_blueprint)
 app.register_blueprint(usuarios_blueprint)
 app.register_blueprint(lojas_blueprint)
 app.register_blueprint(fornecedores_blueprint)
+app.register_blueprint(permissoes_blueprint)
+app.register_blueprint(atividades_blueprint)
 
 if __name__ == "__main__":
   app.run(debug=True)
