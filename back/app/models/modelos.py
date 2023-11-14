@@ -14,7 +14,7 @@ class Casa(db.Model):
     rua = db.Column(db.String(100))
 
     #Construtor, recebendo os parâmetros para adicionar ao objeto
-    def __init__(self, _qtdQuartos, _qtdBanheiros, _rua):
-        self.qtdQuartos = _qtdQuartos
-        self.qtdBanheiros = _qtdBanheiros
-        self.rua = _rua
+    def __init__(self, qtdQuartos, qtdBanheiros, rua):
+        self.qtdQuartos = qtdQuartos
+        self.qtdBanheiros = qtdBanheiros
+        self.rua = rua
