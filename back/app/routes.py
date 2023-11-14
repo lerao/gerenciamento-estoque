@@ -33,10 +33,11 @@ def get_casas():
 @app.route("/casa", methods=['POST'])
 def create_casa():
     dados = request.json
-    _qtdQuartos = dados.qtdQuartos
-    _rua = dados.rua
-    _qtdBanheiros = dados._qtdBanheiros
-    casa = Casa(_qtdQuartos, _qtdBanheiros, _rua)
+    _qtdQuartos = dados["qtdQuartos"]
+    _qtdBanheiros = dados["qtdBanheiros"]
+    _rua = dados["rua"]
+
+    casa = Casa(qtdQuartos=_qtdQuartos, qtdBanheiros=_qtdBanheiros, rua=_rua)
     db.session.add(casa)
     db.session.commit()
     return jsonify({'status': 201, 'message': 'Casa criada com sucesso'}), 201
