@@ -6,4 +6,4 @@ permissoes_blueprint = Blueprint('permissoes', __name__)
 
 @permissoes_blueprint.route("/permissoes")
 def permissoes():
-  return render_template("dashboard.html")
+  return render_template("erro.html")

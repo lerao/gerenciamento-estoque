@@ -6,4 +6,4 @@ fornecedores_blueprint = Blueprint('fornecedores', __name__)
 
 @fornecedores_blueprint.route("/fornecedores")
 def fornecedores():
-  return render_template("dashboard.html")
+  return render_template("erro.html")
