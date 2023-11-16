@@ -11,41 +11,121 @@ Clientes
 <div class="container-fluid">
     <h2 class="p-10">Clientes</h2>
     <div class="text-right">
-        <button class="btn btn-primary cadastrar-button m-3" onclick="exibirFormularioCadastro()">Cadastrar Cliente</button>
+        <button class="btn btn-primary cadastrar-button m-3" data-toggle="modal" data-target="#cadastroModal">Cadastrar
+            Cliente</button>
+    </div>
+
+    <div class="modal fade" id="cadastroModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cadastro de Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo:</label>
+                            <select class="form-control tipo" id="tipo">
+                                <option value="PF">Pessoa Física</option>
+                                <option value="PJ">Pessoa Jurídica</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="documento">Documento:</label>
+                            <input type="text" class="form-control" id="documento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endereco">Endereço:</label>
+                            <input type="text" class="form-control" id="endereco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" class="form-control" id="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de Nascimento:</label>
+                            <input type="date" class="form-control" id="dataNascimento" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="cadastrarCliente()">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="visualizarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Visualizar Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body" id="infoCliente">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="editNome">Nome:</label>
+                            <input type="text" class="form-control" id="editNome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTipo tipo">Tipo:</label>
+                            <select class="form-control" id="editTipo">
+                                <option value="PF">Pessoa Física</option>
+                                <option value="PJ">Pessoa Jurídica</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDocumento">Documento:</label>
+                            <input type="text" class="form-control" id="editDocumento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEndereco">Endereço:</label>
+                            <input type="text" class="form-control" id="editEndereco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTelefone">Telefone:</label>
+                            <input type="text" class="form-control" id="editTelefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDataNascimento">Data de Nascimento:</label>
+                            <input type="date" class="form-control" id="editDataNascimento" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="salvarEdicao()">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="card" style="background-color: #eee;">
-
-        <form id="formularioCadastro" style="display: none;">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" required>
-            </div>
-            <div class="form-group">
-                <label for="tipo">Tipo:</label>
-                <select class="form-control tipo" id="tipo">
-                    <option value="PF">Pessoa Física</option>
-                    <option value="PJ">Pessoa Jurídica</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="documento">Documento:</label>
-                <input type="text" class="form-control" id="documento" required>
-            </div>
-            <div class="form-group">
-                <label for="endereco">Endereço:</label>
-                <input type="text" class="form-control" id="endereco" required>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" required>
-            </div>
-            <div class="form-group">
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" class="form-control" id="dataNascimento" required>
-            </div>
-            <button type="button" class="btn btn-success" onclick="cadastrarCliente()">Salvar</button>
-        </form>
 
         <div class="table-responsive">
             <table id="zero_config" class="table table-striped table-bordered">
@@ -66,40 +146,51 @@ Clientes
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block js %}
 <script>
     let listaDeClientes = [];
-    let clienteEmEdicaoId = null;
 
-    function exibirFormularioCadastro() {
-        document.getElementById("formularioCadastro").style.display = "block";
+    function abrirModalVisualizar(clienteId) {
+        const cliente = listaDeClientes.find(c => c.id === clienteId);
+        document.getElementById("infoCliente").innerHTML = `
+            <strong>Nome:</strong> ${cliente.nome}<br>
+            <strong>Tipo:</strong> ${cliente.tipo}<br>
+            <strong>Documento:</strong> ${cliente.documento}<br>
+            <strong>Endereço:</strong> ${cliente.endereco}<br>
+        `;
+        $('#visualizarModal').modal('show');
+    }
+
+    function abrirModalEditar(clienteId) {
+        const cliente = listaDeClientes.find(c => c.id === clienteId);
+        document.getElementById("editNome").value = cliente.nome;
+        document.getElementById("editTipo").value = cliente.tipo;
+        document.getElementById("editDocumento").value = cliente.documento;
+        document.getElementById("editEndereco").value = cliente.endereco;
+        document.getElementById("editTelefone").value = cliente.telefone;
+        document.getElementById("editDataNascimento").value = cliente.dataNascimento;
+        $('#editarModal').modal('show');
+    }
+
+    function salvarEdicao() {
+        $('#editarModal').modal('hide');
+    }
+
+    function deletarCliente(clienteId) {
+        listaDeClientes = listaDeClientes.filter(c => c.id !== clienteId);
+        atualizarTabelaClientes();
     }
 
     function cadastrarCliente() {
-    const nome = document.getElementById("nome").value;
-    const tipo = document.getElementById("tipo").value;
-    const documento = document.getElementById("documento").value;
-    const endereco = document.getElementById("endereco").value;
-    const telefone = document.getElementById("telefone").value;
-    const dataNascimento = document.getElementById("dataNascimento").value;
+        const nome = document.getElementById("nome").value;
+        const tipo = document.getElementById("tipo").value;
+        const documento = document.getElementById("documento").value;
+        const endereco = document.getElementById("endereco").value;
+        const telefone = document.getElementById("telefone").value;
+        const dataNascimento = document.getElementById("dataNascimento").value;
 
-    if (clienteEmEdicaoId !== null) {
-        // Atualiza um cliente existente
-        const clienteIndex = listaDeClientes.findIndex(c => c.id === clienteEmEdicaoId);
-        listaDeClientes[clienteIndex] = {
-            id: clienteEmEdicaoId,
-            nome,
-            tipo,
-            documento,
-            endereco,
-            telefone,
-            dataNascimento
-        };
-    } else {
-        // Adiciona um novo cliente
         const novoCliente = {
             id: new Date().getTime(),
             nome,
@@ -109,57 +200,10 @@ Clientes
             telefone,
             dataNascimento
         };
+
         listaDeClientes.push(novoCliente);
-    }
+        $('#cadastroModal').modal('hide');
 
-    atualizarTabelaClientes();
-
-    clienteEmEdicaoId = null;
-
-    limparFormularioCadastro();
-}
-
-    function abrirFormularioEdicao(clienteId) {
-        clienteEmEdicaoId = clienteId;
-        const cliente = listaDeClientes.find(c => c.id === clienteId);
-
-        document.getElementById("nome").value = cliente.nome;
-        document.getElementById("tipo").value = cliente.tipo;
-        document.getElementById("documento").value = cliente.documento;
-        document.getElementById("endereco").value = cliente.endereco;
-        document.getElementById("telefone").value = cliente.telefone;
-        document.getElementById("dataNascimento").value = cliente.dataNascimento;
-
-        exibirFormularioCadastro();
-    }
-
-    function salvarEdicao() {
-        if (clienteEmEdicaoId !== null) {
-            const index = listaDeClientes.findIndex(c => c.id === clienteEmEdicaoId);
-
-            listaDeClientes[index].nome = document.getElementById("nome").value;
-            listaDeClientes[index].tipo = document.getElementById("tipo").value;
-            listaDeClientes[index].documento = document.getElementById("documento").value;
-            listaDeClientes[index].endereco = document.getElementById("endereco").value;
-            listaDeClientes[index].telefone = document.getElementById("telefone").value;
-            listaDeClientes[index].dataNascimento = document.getElementById("dataNascimento").value;
-
-            limparFormularioCadastro();
-            atualizarTabelaClientes();
-        } else {
-            console.error("Nenhum cliente em edição encontrado.");
-        }
-    }
-
-    function deletarCliente(clienteId) {
-        const confirmacao = confirm("Tem certeza que deseja deletar este cliente?");
-        if (confirmacao) {
-            listaDeClientes = listaDeClientes.filter(c => c.id !== clienteId);
-            atualizarTabelaClientes();
-        }
-    }
-
-    function limparFormularioCadastro() {
         document.getElementById("nome").value = "";
         document.getElementById("tipo").value = "";
         document.getElementById("documento").value = "";
@@ -167,38 +211,39 @@ Clientes
         document.getElementById("telefone").value = "";
         document.getElementById("dataNascimento").value = "";
 
-        document.getElementById("formularioCadastro").style.display = "none";
-
-        clienteEmEdicaoId = null;
+        atualizarTabelaClientes();
     }
 
     function atualizarTabelaClientes() {
-    const tabelaClientes = document.getElementById("tabela-clientes");
-    tabelaClientes.innerHTML = "";
+        const tabelaClientes = document.getElementById("tabela-clientes");
+        tabelaClientes.innerHTML = "";
 
-    if (listaDeClientes.length === 0) {
-        const row = tabelaClientes.insertRow();
-        const cell = row.insertCell(0);
-        cell.colSpan = 8;
-        cell.innerHTML = "Nenhum cliente";
-    } else {
-        listaDeClientes.forEach(cliente => {
+        if (listaDeClientes.length === 0) {
             const row = tabelaClientes.insertRow();
-            row.innerHTML = `
-                <td>${cliente.nome}</td>
-                <td>${cliente.tipo}</td>
-                <td>${cliente.documento}</td>
-                <td>${cliente.endereco}</td>
-                <td>${cliente.telefone}</td>
-                <td>${cliente.dataNascimento}</td>
-                <td class="text-center">
-                    <button class="btn btn-info mx-2" onclick="abrirFormularioEdicao(${cliente.id})"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger mx-2" onclick="deletarCliente(${cliente.id})"><i class="far fa-times-circle"></i></button>
-                </td>
-            `;
-        });
+            const cell = row.insertCell(0);
+            cell.colSpan = 8;
+            cell.innerHTML = "Nenhum cliente";
+        } else {
+
+            listaDeClientes.forEach(cliente => {
+                const row = tabelaClientes.insertRow();
+                row.innerHTML = `
+            <td>${cliente.nome}</td>
+            <td>${cliente.tipo}</td>
+            <td>${cliente.documento}</td>
+            <td>${cliente.endereco}</td>
+            <td>${cliente.telefone}</td>
+            <td>${cliente.dataNascimento}</td>
+            <td class="text-center">
+                <button class="btn btn-info mx-2" onclick="abrirModalVisualizar(${cliente.id})"><i class="fas fa-eye"></i></button>
+                <button class="btn btn-warning mx-2" onclick="abrirModalEditar(${cliente.id})"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger mx-2" onclick="deletarCliente(${cliente.id})"><i class="far fa-times-circle"></i></button>
+            </td>
+
+        `;
+            });
+        }
     }
-}
 
     window.onload = function () {
         atualizarTabelaClientes();

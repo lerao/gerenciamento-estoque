@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, Blueprint
-import database as db
+
+from flask import Flask, render_template, request, redirect, Blueprint;
+import database as db;
 
 clientes_blueprint = Blueprint('clientes', __name__)
 
-@clientes_blueprint.route("/clientes", methods=["GET"])
+@clientes_blueprint.route("/clientes")
 def listar_clientes():
     bd = db.SQLiteConnection('estoque.db')
     bd.connect()
@@ -14,16 +15,13 @@ def listar_clientes():
 def adicionar_cliente():
     if request.method == "POST":
         nome = request.form.get('nome')
-        tipo = request.form.get('tipo')
-        documento = request.form.get('documento')
-        endereco = request.form.get('endereco')
+        email = request.form.get('email')
         telefone = request.form.get('telefone')
-        dataNascimento = request.form.get('dataNascimento')
 
         bd = db.SQLiteConnection('estoque.db')
         bd.connect()
-        query = "INSERT INTO clientes (nome, tipo, documento, endereco, telefone, dataNascimento) VALUES (?, ?, ?, ?, ?, ?);"
-        bd.execute_query(query, (nome, tipo, documento, endereco, telefone, dataNascimento))
+        query = "INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?);"
+        bd.execute_query(query, (nome, email, telefone))
 
         return redirect("/clientes")
 
@@ -36,16 +34,13 @@ def editar_cliente(cliente_id):
         return render_template("editar_cliente.html", cliente=cliente)
     elif request.method == "POST":
         nome = request.form.get('nome')
-        tipo = request.form.get('tipo')
-        documento = request.form.get('documento')
-        endereco = request.form.get('endereco')
+        email = request.form.get('email')
         telefone = request.form.get('telefone')
-        dataNascimento = request.form.get('dataNascimento')
 
         bd = db.SQLiteConnection('estoque.db')
         bd.connect()
-        query = "UPDATE clientes SET nome = ?, tipo = ?, documento = ?, endereco = ?, telefone = ?, dataNascimento = ? WHERE id = ?;"
-        bd.execute_query(query, (nome, tipo, documento, endereco, telefone, dataNascimento, cliente_id))
+        query = "UPDATE clientes SET nome = ?, email = ?, telefone = ? WHERE id = ?;"
+        bd.execute_query(query, (nome, email, telefone, cliente_id))
 
         return redirect("/clientes")
 
