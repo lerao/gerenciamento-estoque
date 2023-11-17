@@ -54,7 +54,7 @@ def get_clientes():
 
     for cliente in clientes:
         # Data de nascimento para o padrão br
-        data_nascimento_noNapeBR = cliente.data_nascimento.strftime("%d/%m/%Y") if cliente.data_nascimento else None
+        data_nascimento = cliente.data_nascimento.strftime("%Y-%m-%d") if cliente.data_nascimento else None
 
         lista_clientes.append({
             'id': cliente.id,
@@ -63,7 +63,7 @@ def get_clientes():
             'documento': cliente.documento,
             'endereco': cliente.endereco,
             'telefone': cliente.telefone,
-            'data_nascimento': data_nascimento_noNapeBR
+            'dataNascimento': data_nascimento
         })
 
     return jsonify(lista_clientes)
@@ -106,11 +106,11 @@ def update_cliente(cliente_id):
 
     # Converte a data de nascimento para um objeto date, se vier na solicitação
     if "data_nascimento" in dados:
-        cliente.data_nascimento = datetime.strptime(dados["data_nascimento"], "%d/%m/%Y").date()
+        cliente.data_nascimento = datetime.strptime(dados["dataNascimento"], "%Y-%m-%d").date()
 
     db.session.commit()
 
-    return jsonify({'status': 200, 'message': 'Cliente atualizado com sucesso'}), 200
+    return jsonify({'status': 200, 'message': 'Cliente atualizado com sucesso', 'data': cliente.id}), 200
 
 
 # Remover Cliente
