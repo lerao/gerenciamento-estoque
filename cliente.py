@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, Blueprint;
+from flask import Flask, render_template, request, redirect, Blueprint,jsonify;
 import database as db;
 
 clientes_blueprint = Blueprint('clientes', __name__)
@@ -9,19 +9,22 @@ def listar_clientes():
     bd = db.SQLiteConnection('estoque.db')
     bd.connect()
     clientes = bd.execute_query("SELECT * FROM clientes;")
+    #return jsonify(clientes)
     return render_template("clientes.html", dados=clientes)
 
 @clientes_blueprint.route("/clientes/adicionar", methods=["POST"])
 def adicionar_cliente():
     if request.method == "POST":
         nome = request.form.get('nome')
-        email = request.form.get('email')
+        documento = request.form.get('documento')
+        endereco = request.form.get('endereco') 
         telefone = request.form.get('telefone')
+        data_nascimento = request.form.get('data_nascimento')
 
         bd = db.SQLiteConnection('estoque.db')
         bd.connect()
-        query = "INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?);"
-        bd.execute_query(query, (nome, email, telefone))
+        query = "INSERT INTO clientes (nome, documento, endereco, telefone, data_nascimento) VALUES (?, ?, ?);"
+        bd.execute_query(query, (nome, documento, endereco, telefone, data_nascimento))
 
         return redirect("/clientes")
 

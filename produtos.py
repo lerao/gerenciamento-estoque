@@ -6,4 +6,4 @@ produtos_blueprint = Blueprint('produtos', __name__)
 
 @produtos_blueprint.route("/produtos")
 def produtos():
-  return render_template("dashboard.html")
+  return render_template("erro.html")
