@@ -69,7 +69,7 @@ def get_clientes():
     return jsonify(lista_clientes)
 
 # Criar Cliente
-@app.route("/cliente", methods=['POST'])
+@app.route("/clientes", methods=['POST'])
 def create_cliente():
     dados = request.json
     _nome = dados["nome"]
@@ -79,13 +79,13 @@ def create_cliente():
     _telefone = dados["telefone"]
 
     # Convertendo a string de data para um objeto de data Python (formato brasileiro)
-    _data_nascimento = datetime.strptime(dados["data_nascimento"], "%d/%m/%Y").date()
+    _data_nascimento = datetime.strptime(dados["dataNascimento"], "%Y-%m-%d").date()
 
     cliente = Cliente(nome=_nome, tipo=_tipo, documento=_documento, endereco=_endereco, telefone=_telefone, data_nascimento=_data_nascimento)
     db.session.add(cliente)
     db.session.commit()
 
-    return jsonify({'status': 201, 'message': 'Cliente criado com sucesso'}), 201
+    return jsonify({'status': 201, 'message': 'Cliente criado com sucesso', 'data': cliente.id}), 201
 
 # Atualizar cliente
 @app.route("/clientes/<int:cliente_id>", methods=['PUT'])
