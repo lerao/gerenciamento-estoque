@@ -18,3 +18,14 @@ class Casa(db.Model):
         self.qtdQuartos = qtdQuartos
         self.qtdBanheiros = qtdBanheiros
         self.rua = rua
+
+
+# Tabela tarefa
+class Tarefa(db.Model):
+    # Propriedades de Tarefa
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    descricao = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.String(50), default='Pendente')
+
+    def __init__(self, descricao):
+        self.descricao = descricao
