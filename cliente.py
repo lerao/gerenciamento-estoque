@@ -9,8 +9,8 @@ def listar_clientes():
     bd = db.SQLiteConnection('estoque.db')
     bd.connect()
     clientes = bd.execute_query("SELECT * FROM clientes;")
-    return jsonify(clientes)
-    #return render_template("clientes.html", dados=clientes)
+    #return jsonify(clientes)
+    return render_template("clientes.html", dados=clientes)
 
 @clientes_blueprint.route("/clientes/adicionar", methods=["POST"])
 def adicionar_cliente():
