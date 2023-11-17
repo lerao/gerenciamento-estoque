@@ -11,16 +11,16 @@ Clientes
 <div class="container-fluid">
     <h2 class="p-10">Clientes</h2>
     <div class="text-right">
-        <button class="btn btn-primary cadastrar-button m-3" data-toggle="modal" data-target="#cadastroModal">Cadastrar
+        <button class="btn btn-primary cadastrar-button m-3" data-toggle="modal" onclick="abrirFormCadastro()">Cadastrar
             Cliente</button>
     </div>
 
-    <div class="modal fade" id="cadastroModal">
+    <div id="cadastroForm" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Cadastro de Cliente</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="fechar()">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -55,39 +55,22 @@ Clientes
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="cadastrarCliente()">Salvar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" onclick="fechar()">Fechar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="visualizarModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Visualizar Cliente</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body" id="infoCliente">
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="editarModal">
+    <div id="edicaoForm" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Editar Cliente</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="fechar()">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form>
+                        <input type="hidden" id="idCliente" value="">
                         <div class="form-group">
                             <label for="editNome">Nome:</label>
                             <input type="text" class="form-control" id="editNome" required>
@@ -119,7 +102,7 @@ Clientes
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="salvarEdicao()">Salvar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" onclick="fechar()">Fechar</button>
                 </div>
             </div>
         </div>
@@ -153,59 +136,148 @@ Clientes
     let listaDeClientes = [];
 
     carregarClientes();
-    carregarClientes();
 
-function carregarClientes() {
-    // Inserir Fetch aqui
-    fetch('http://127.0.0.1:5001/clientes', {
-        method: 'GET'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao obter lista de clientes');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Sucesso: Adicionar clientes à listaDeClientes
-        listaDeClientes = data;
-        atualizarTabelaClientes(); // Atualizar a tabela após carregar os clientes
-    })
-    .catch(error => {
-        // Erro: Mostrar mensagem de erro
-        alert('Erro ao obter lista de clientes');
-    });
-}
+    function abrirFormCadastro(){
+        document.getElementById("edicaoForm").style.display = 'none'
+        document.getElementById("cadastroForm").style.display = 'block'
+    }
 
-    function abrirModalVisualizar(clienteId) {
-        const cliente = listaDeClientes.find(c => c.id === clienteId);
-        document.getElementById("infoCliente").innerHTML = `
-            <strong>Nome:</strong> ${cliente.nome}<br>
-            <strong>Tipo:</strong> ${cliente.tipo}<br>
-            <strong>Documento:</strong> ${cliente.documento}<br>
-            <strong>Endereço:</strong> ${cliente.endereco}<br>
-        `;
-        $('#visualizarModal').modal('show');
+    function fechar() {
+        document.getElementById("edicaoForm").style.display = 'none'
+        document.getElementById("cadastroForm").style.display = 'none'
+    }
+    
+    function carregarClientes() {
+        // Inserir Fetch aqui
+        fetch('http://127.0.0.1:5001/clientes', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao obter lista de clientes');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Sucesso: Adicionar clientes à listaDeClientes
+                listaDeClientes = data;
+                atualizarTabelaClientes(); // Atualizar a tabela após carregar os clientes
+            })
+            .catch(error => {
+                // Erro: Mostrar mensagem de erro
+                alert('Erro ao obter lista de clientes');
+            });
     }
 
     function abrirModalEditar(clienteId) {
         const cliente = listaDeClientes.find(c => c.id === clienteId);
+        document.getElementById("idCliente").value = clienteId;
         document.getElementById("editNome").value = cliente.nome;
         document.getElementById("editTipo").value = cliente.tipo;
         document.getElementById("editDocumento").value = cliente.documento;
         document.getElementById("editEndereco").value = cliente.endereco;
         document.getElementById("editTelefone").value = cliente.telefone;
         document.getElementById("editDataNascimento").value = cliente.dataNascimento;
-        $('#editarModal').modal('show');
+        
+        document.getElementById("cadastroForm").style.display = 'none'
+        document.getElementById("edicaoForm").style.display = 'block'
     }
 
     function salvarEdicao() {
-        $('#editarModal').modal('hide');
+        const id = document.getElementById("idCliente").value;
+        const nome = document.getElementById("editNome").value;
+        const tipo = document.getElementById("editTipo").value;
+        const documento = document.getElementById("editDocumento").value;
+        const endereco = document.getElementById("editEndereco").value;
+        const telefone = document.getElementById("editTelefone").value;
+        const dataNascimento = document.getElementById("editDataNascimento").value;
+
+        const ClienteAtualizado = {
+            nome,
+            tipo,
+            documento,
+            endereco,
+            telefone,
+            dataNascimento
+        };
+
+        // Inserir Fetch aqui
+        fetch('http://127.0.0.1:5001/clientes/' + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(ClienteAtualizado),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar cliente no servidor');
+                }
+                return response.json();
+            })
+            .then(response => {
+                if (response.data) {
+                    // Sucesso: Mostrar mensagem de sucesso
+                    ClienteAtualizado.id = response.data;
+                    atualizarListaClientes(ClienteAtualizado);
+                    atualizarTabelaClientes();
+                    limparCamposFormulario();
+                    $('#cadastroModal').modal('hide');
+                    $('#editarModal').modal('hide');
+                }
+            })
+            .catch(error => {
+                // Erro: Mostrar mensagem de erro
+                alert('Erro ao atualizar cliente: ' + error.message);
+            });
     }
 
-    function deletarCliente(clienteId) {
-        listaDeClientes = listaDeClientes.filter(c => c.id !== clienteId);
-        atualizarTabelaClientes();
+    function atualizarListaClientes(cliente) {
+        // Adicionando o cliente do servidor à lista
+        const index = listaDeClientes.findIndex(c => c.id === cliente.id);
+        if (index !== -1) {
+            listaDeClientes[index] = cliente;
+        }
+    }
+
+    function limparCamposFormulario() {
+        // Limpar campos do formulário
+        document.getElementById("nome").value = "";
+        document.getElementById("tipo").value = "";
+        document.getElementById("documento").value = "";
+        document.getElementById("endereco").value = "";
+        document.getElementById("telefone").value = "";
+        document.getElementById("dataNascimento").value = "";
+    }
+
+    function deletarCliente(id) {
+        fetch('http://127.0.0.1:5001/clientes/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao remover cliente');
+                }
+                return response.json();
+            })
+            .then(response => {
+
+                // Sucesso: Mostrar mensagem de sucesso
+                listaDeClientes = listaDeClientes.filter(c => c.id !== id);
+                atualizarTabelaClientes();
+
+                $('#cadastroModal').modal('hide');
+                $('#editarModal').modal('hide');
+
+            })
+            .catch(error => {
+                // Erro: Mostrar mensagem de erro
+                alert('Erro ao Remover cliente: ' + error.message);
+            });
+
     }
 
     function cadastrarCliente() {
@@ -233,27 +305,27 @@ function carregarClientes() {
             },
             body: JSON.stringify(novoCliente),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao cadastrar cliente');
-            }
-            return response.json();
-        })
-        .then(response => {
-            if (response.data) {
-                // Sucesso: Mostrar mensagem de sucesso
-                novoCliente.id = response.data;
-                alert('Cliente cadastrado com sucesso');
-                listaDeClientes.push(novoCliente); // Adicionar o cliente retornado pelo servidor à lista
-                atualizarTabelaClientes();
-                $('#cadastroModal').modal('hide');
-            }
-           
-        })
-        .catch(error => {
-            // Erro: Mostrar mensagem de erro
-            alert('Erro ao cadastrar cliente');
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar cliente');
+                }
+                return response.json();
+            })
+            .then(response => {
+                if (response.data) {
+                    // Sucesso: Mostrar mensagem de sucesso
+                    novoCliente.id = response.data;
+                    alert('Cliente cadastrado com sucesso');
+                    listaDeClientes.push(novoCliente); // Adicionar o cliente retornado pelo servidor à lista
+                    atualizarTabelaClientes();
+                    $('#cadastroModal').modal('hide');
+                }
+
+            })
+            .catch(error => {
+                // Erro: Mostrar mensagem de erro
+                alert('Erro ao cadastrar cliente');
+            });
 
         // Limpar campos do formulário
         document.getElementById("nome").value = "";
