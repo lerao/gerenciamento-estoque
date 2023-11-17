@@ -20,6 +20,7 @@ class Casa(db.Model):
         self.rua = rua
 
 
+
 ###################################  Projeto  ###############################################
 
 class Cliente(db.Model):
@@ -39,3 +40,14 @@ class Cliente(db.Model):
         self.endereco = endereco
         self.telefone = telefone
         self.data_nascimento = data_nascimento
+
+
+#======== Tabela Tarefa =========
+class Tarefa(db.Model):
+    # Propriedades de Tarefa
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    descricao = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.String(50), default='Pendente')
+
+    def __init__(self, descricao):
+        self.descricao = descricao

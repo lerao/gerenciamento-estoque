@@ -4,7 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
 #Importa os modelos que vamos usar
-from app.models.modelos import Casa, Cliente
+from app.models.modelos import Casa, Cliente, Tarefa
 
 #CRUD
 # Create -> Cria recurso -> POST
@@ -126,7 +126,38 @@ def delete_cliente(cliente_id):
 
 
 
+#===== Listar Tarefas =====
+@app.route("/tarefa", methods=['GET'])
+def lista_tarefas():
+    tarefas = Tarefa.query.all()
+    lista_tarefa = []
 
+    for tarefa in tarefas:
+        lista_tarefa.append({
+            'id': tarefa.id,
+            'descricao': tarefa.descricao,
+            'status': tarefa.status
+        })
+
+    return jsonify({'tarefas': lista_tarefa})
+
+
+#===== Criar Tarefas =====
+@app.route("/tarefa", methods=['POST'])
+def criar_tarefa():
+
+    dados = request.json
+
+    if 'descricao' not in dados:
+        return jsonify({'status': 400, 'message': 'Descrição da tarefa é obrigatória'}), 400
+
+    descricao = dados['descricao']
+    nova_tarefa = Tarefa(descricao=descricao)
+
+    db.session.add(nova_tarefa)
+    db.session.commit()
+
+    return jsonify({'status': 201, 'message': 'Tarefa criada com sucesso'}), 201
 """
 
 # Excluir uma categoria
@@ -153,3 +184,4 @@ def update_categoria(categoria_id):
     db.session.commit()
     return jsonify({'message': 'Categoria atualizada com sucesso'})
 """
+
