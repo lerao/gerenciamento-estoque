@@ -10,6 +10,8 @@ from fornecedores import fornecedores_blueprint
 from permissoes import permissoes_blueprint
 from atividades import atividades_blueprint
 from vendedores import vendedores_blueprint
+from cadastroVendas import cadastroVendas_blueprint
+
 import database as db
 
 app = Flask(__name__)
@@ -90,6 +92,7 @@ app.register_blueprint(fornecedores_blueprint)
 app.register_blueprint(permissoes_blueprint)
 app.register_blueprint(atividades_blueprint)
 app.register_blueprint(vendedores_blueprint)
+app.register_blueprint(cadastroVendas_blueprint)
 
 if __name__ == "__main__":
   app.run(debug=True, port=5000)
