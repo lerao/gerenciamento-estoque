@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Lojas
+{% endblock %}
+
+{% block css %}
+<style
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c6bebe;
+    border-radius: 5px;
+    font-size: 16px;
+}
+</style>
+{% endblock %}
+
+{% block conteudo %}
+
+
+<link rel="stylesheet" href="stylelojas.css">
+
+  <h2>Unidades de lojas</h2>
+  <form id="cadastroLoja">
+
+    <div class="container-fluid">
+        <br>
+    
+        <form id="cadastroLoja">
+            <div class="form-group">
+                <label for="nomeLoja">Nome da Loja:</label>
+                <input type="text" maxlength="20" placeholder="Digite o nome da loja:" minlength="4" id="nomeLoja" name="nomeLoja" required>
+            </div>
+
+
+            <label for="uf">Estado</label>
+            <select id="uf">
+                <option></option>
+            </select>
+            <label for="cidade">Cidade</label>
+            <select id="cidade">
+                <option></option>
+            </select>
+    
+            <div class="form-group">
+                <label for="Endereco">Endereço:</label>
+                <input type="text" id="Endereco" name="Endereco" placeholder="Digite Endereço:" required>
+                <div id="errorEndereco" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email">E-mail:</label>
+                <input type="email" id="Email" name="Email" placeholder="Digite seu E-mail:"  maxlength="40" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cnpj">Digite o CNPJ:</label>
+                <input type="text" id="cnpj" name="cpnj" placeholder="Digite o CNPJ da Loja:" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefoneLoja">Telefone:</label>
+                <input type="tel" id="telefoneLoja" name="telefoneLoja" pattern="[0-9]{9}" inputmode="numeric" required placeholder="Digite Número de Telefone:">
+                <small>Informe apenas números (exemplo: 87-xxxx-xxxx).</small>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Cadastrar loja</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block js %} <script>
+    const ufSelect = document.getElementById("uf");
+    const cidadeSelect = document.getElementById("cidade");
+
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(uf => {
+                const option = document.createElement("option");
+                option.value = uf.sigla;
+                option.text = uf.sigla;
+                ufSelect.appendChild(option);
+            });
+        });
+
+    ufSelect.addEventListener('change', async function () {
+        const urlCidades = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufSelect.value}/municipios`; 
+        const request = await fetch(urlCidades);
+        const responseJson = await request.json();
+
+        cidadeSelect.innerHTML = '<option></option>'; 
+
+        responseJson.forEach(function (cidade) {
+            const option = document.createElement("option");
+            option.value = cidade.nome;
+            option.text = cidade.nome; 
+            cidadeSelect.appendChild(option); 
+        });
+    });
+
+    const form = document.getElementById('cadastroLoja');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const nomeLoja = document.getElementById('nomeLoja').value;
+        const endereco = document.getElementById('Endereco').value;
+        const email = document.getElementById('Email').value;
+        const telefoneLoja = document.getElementById('telefoneLoja').value;
+
+        if (!endereco.includes(',')) {
+            document.getElementById("errorEndereco").innerHTML = "O campo de endereço deve conter pelo menos uma vírgula.";
+            return false;
+        } else {
+            document.getElementById("errorEndereco").innerHTML = "";
+        }
+
+        if (telefoneLoja.length !== 9 || isNaN(telefoneLoja)) {
+            document.getElementById("errorTelefoneLoja").innerHTML = "O telefone deve ter nove dígitos e ser um número válido.";
+            document.getElementById("errorTelefoneLoja").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("errorTelefoneLoja").style.display = "none";
+        }
+
+        fetch('https://your-api-url.com/api/lojas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nomeLoja: nomeLoja,
+                endereco: endereco,
+                telefoneLoja: telefoneLoja
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Loja cadastrada com sucesso!');
+                form.reset();
+            } else {
+                alert('Erro ao cadastrar loja. Tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Erro ao cadastrar loja. Tente novamente.');
+       
+       
+        });
+
+        const mensagem = `Nome da Loja: ${nomeLoja}\nEndereço: ${endereco}\nTelefone: ${telefoneLoja}`;
+        alert(mensagem);
+
+        form.reset();
+    });
+
+    const cnpjInput = document.getElementById('cnpj'); 
+    const errorCnpj = document.getElementById('errorCnpj');
+
+    cnpjInput.addEventListener('input', function () {
+        let cnpj = cnpjInput.value;
+
+        cnpj = cnpj.replace(/[^0-9\/.-]/g, '');
+
+        cnpjInput.value = cnpj;
+    });
+
+    cnpjInput.addEventListener('blur', function () {
+        const cnpj = cnpjInput.value;
+
+        if (CNPJ.isValid(cnpj)) {
+            errorCnpj.textContent = '';  
+        } else {
+            errorCnpj.textContent = 'CNPJ inválido';  
+        }
+    });
+
+
+    function validarEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+</script>{% endblock %}
