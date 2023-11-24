@@ -39,3 +39,21 @@ class Cliente(db.Model):
         self.endereco = endereco
         self.telefone = telefone
         self.data_nascimento = data_nascimento
+
+
+class Produtos(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String(40))
+    qtd = db.Column(db.Integer)
+    tipo = db.Column(db.String(15))
+    preco = db.Column(db.Float)
+    descricao = db.Column(db.String(100))
+
+
+    def __init__(self, nome, qtd, tipo, preco, descricao):
+        self.nome = nome
+        self.qtd = qtd
+        self.tipo = tipo
+        self.preco = preco
+        self.descricao = descricao

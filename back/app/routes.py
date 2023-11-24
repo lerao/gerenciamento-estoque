@@ -5,6 +5,7 @@ from datetime import datetime
 
 #Importa os modelos que vamos usar
 from app.models.modelos import Casa, Cliente
+from app.models.modelos import Produtos
 
 #CRUD
 # Create -> Cria recurso -> POST
@@ -153,3 +154,58 @@ def update_categoria(categoria_id):
     db.session.commit()
     return jsonify({'message': 'Categoria atualizada com sucesso'})
 """
+
+@app.route("/produtos", methods=['GET'])
+def get_produtos():
+    produtos = Produtos.query.all()
+    lista_produtos = []
+    for produto in produtos:
+        lista_produtos.append({
+            'id': produto.id,
+            'nome': produto.nome,
+            'qtd': produto.qtd,
+            'tipo': produto.tipo,
+            'preco': produto.preco,
+            'descricao': produto.descricao,
+            })
+
+    return jsonify(lista_produtos)
+
+#Create
+# Cria uma casa no banco de dados
+
+"""
+@app.route("/produtos", methods=['POST'])
+def create_produtos():
+    dados = request.json
+    nome = dados.nome
+    qtd = dados.qtd
+    tipo = dados.tipo
+    preco = dados.preco
+    descricao = dados.descricao
+    produtos = Produtos(nome, qtd, tipo, preco, descricao )
+    db.session.add(produtos)
+    db.session.commit()
+    return jsonify({'status': 201, 'message': 'Criado com sucesso'}), 201
+    """
+
+
+    # ...
+
+# Create
+# Cria um produto no banco de dados
+@app.route("/produtos", methods=['POST'])
+def create_produtos():
+    dados = request.json
+    nome = dados['nome']
+    qtd = dados['qtd']
+    tipo = dados['tipo']
+    preco = dados['preco']
+    descricao = dados['descricao']
+    
+    produto = Produtos(nome=nome, qtd=qtd, tipo=tipo, preco=preco, descricao=descricao)
+    db.session.add(produto)
+    db.session.commit()
+    
+    return jsonify({'status': 201, 'message': 'Criado com sucesso'}), 201
+

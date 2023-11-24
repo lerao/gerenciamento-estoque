@@ -1,4 +1,39 @@
-import sqlite3
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+class SQLiteConnection:
+    def __init__(self, app):
+        self.app = app
+        self.connection = None
+
+    def connect(self):
+        try:
+            db.init_app(self.app)
+            with self.app.app_context():
+                db.create_all()
+            print("Conexão com o banco de dados estabelecida.")
+        except Exception as error:
+            print("Erro ao conectar ao banco de dados:", error)
+
+    def disconnect(self):
+        if self.connection:
+            self.connection.close()
+            print("Conexão com o banco de dados fechada.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""import sqlite3
 
 class SQLiteConnection:
     def __init__(self, db_name):
@@ -46,3 +81,4 @@ class SQLiteConnection:
         query = f"SELECT name FROM sqlite_master WHERE type='table' AND name=?;"
         result = self.execute_query(query, (table_name,))
         return len(result) > 0
+"""

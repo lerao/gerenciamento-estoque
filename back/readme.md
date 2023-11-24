@@ -13,7 +13,8 @@ flask db init
 ``` 
 * Criar Migração Inicial
 ```
-flask db migrate -m "Inicialização"
+
+
 ``` 
 * Aplicar Migrações
 ```
