@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block conteudo %}
+
+            
+            <div class="container-fluid">
+                <h2>Formulário Cadastro De Produtos</h2>
+                <form id="produtoForm" action="/produtos/save" method="post">
+                    
+                    
+                    <div class="form-group row">
+                        <label for="nomeCategoria" class="col-sm-3 text-right control-label col-form-label">Código Do Produto</label>
+                        <div class="col-sm-9">
+                            <input  type="number" 
+                                    class="form-control"
+                                    id="nomeCategoria"
+                                    name="nomeCategoria" 
+                                    placeholder="Cód"
+                                    value="{{produtos[0][1]}}"
+                                    required>
+                                    <input type="hidden" name="id" value="{{produtos[0][0]}}">
+                        </div>
+                    </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            {% if dados %}
+                                Adicionar 
+                            {% else %}
+                                Atualizar 
+                            {% endif %}
+                            Cód
+                        </button>
+                
+                
+                
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Nome Do Produto</label>
+                        <div class="col-sm-9">
+                            <input type="text" 
+                                    class="form-control"
+                                    id="nomeProduto"
+                                    name="nomeProduto" 
+                                    placeholder="Digite o nome do produto"
+                                    value="{{produto[0][1]}}"
+                                    required>
+                        
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary">
+                            {% if dados %}
+                                Adicionar 
+                            {% else %}
+                                Atualizar 
+                            {% endif %}
+                            Nome
+                        </button>    
+                
+                
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Quantidade</label>
+                        <div class="col-sm-9">
+                            <input type="number" 
+                            class="form-control"
+                            id="nomeQuantidade"
+                            name="nomeQuantidade" 
+                            placeholder="Digite a quantidade"
+                            value="{{quantidade[0][1]}}"
+                            required>
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary">
+                            {% if dados %}
+                                Adicionar 
+                            {% else %}
+                                Atualizar 
+                            {% endif %}
+                            Quantidade
+                        </button>
+
+
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Tipo De Produto</label>
+                        <div class="col-sm-9">
+                            <input type="text" 
+                            class="form-control"
+                            id="nomeTipo"
+                            name="nomeTipo" 
+                            placeholder="Digite o tipo do produto"
+                            value="{{tipo[0][1]}}"
+                            required>
+                        </div>
+                    </div>
+
+                    
+                        <button type="submit" class="btn btn-primary">
+                            {% if dados %}
+                                Adicionar 
+                            {% else %}
+                                Atualizar 
+                            {% endif %}
+                            Tipo
+                        </button>
+
+
+                <div class="form-group row">
+                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Preço Do Produto</label>
+                    <div class="col-sm-9">
+                        <input type="text" 
+                        class="form-control"
+                        id="nomePreço"
+                        name="nomePreço" 
+                        placeholder="Digite o preço"
+                        value="{{preço[0][1]}}"
+                        required>
+                    </div>
+                </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        {% if dados %}
+                            Adicionar 
+                        {% else %}
+                            Atualizar 
+                        {% endif %}
+                        Preço
+                    </button>
+
+
+                <div class="form-group row">
+                    <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Descrição Do Produto</label>
+                    <div class="col-sm-9">
+                        <input type="text" 
+                        class="form-control"
+                        id="nomeDescrição"
+                        name="nomeDescrição" 
+                        placeholder="Descrição do produto"
+                        value="{{descrição[0][1]}}"
+                        required>
+                        
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+                    <button type="submit" class="btn btn-primary">
+                        {% if dados %}
+                            Adicionar 
+                        {% else %}
+                            Atualizar 
+                        {% endif %}
+                        Descrição
+                    </button>
+
+                </form>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        
+                        
+                        <label for="cono1" class="control-label col-form-label">
+                            <input class="btn btn-primary" type="reset" value="Cadastrar">
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                {% if dados %}
+                <h2>Produtos Cadastrados</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Código Do Produto</th>
+                                        <th>Nome Do Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Tipo De Produto</th>
+                                        <th>Descrição Do Produto</th>
+                                        <th>Preço Do Produto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for produtos in dados %}
+                                    <tr>
+                                        <td>{{produtos[0]}}</td>
+                                        <td>{{produtos[1]}}</td>
+                                        <td>{{produtos[2]}}</td>
+                                        <td>{{produtos[3]}}</td>
+                                        <td>{{produtos[4]}}</td>
+                                        <td>{{produtos[5]}}</td>
+                                        <td>
+                                            <a class="btn btn-warning btn-xs"
+                                            href="/produtos/edit/{{produtos[0]}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        
+                                        <a class="btn btn-danger btn-xs"
+                                            href="/produtos/delete/{{produtos[0]}}">
+                                            <i class="far fa-times-circle"></i>
+                                        </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                                   
+                        </div>
+                    </div>
+                </div>            
+
+
+
+
+
+    {% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+});
+</script>
+{% endblock %}

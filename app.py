@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, jsonify;
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 from database import SQLiteConnection
 import json
 from cliente import clientes_blueprint
