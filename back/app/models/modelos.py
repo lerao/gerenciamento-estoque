@@ -39,3 +39,23 @@ class Cliente(db.Model):
         self.endereco = endereco
         self.telefone = telefone
         self.data_nascimento = data_nascimento
+
+###################################  fornecedores  ###############################################
+class fornedores(db.Model): 
+    
+    #propiedade
+     id = db.Colunn(db.Integer, primary_key=True, autoincrement=True)
+     razao_social=db.Column(db.Interger)
+     nome_fantasia=db.Column(db.Interger)
+     endereco=db.Column(db.Interger)
+     cnpj=db.Column(db.Interger)
+     contato=db.Column(db.Interger)
+     
+     #contrustor __init__
+     
+     def __init__(self,razao_social, nome_fantasia, endereco, cnpj, contato):
+         self.razao_social =razao_social
+         self.nome_fantasia = nome_fantasia
+         self.endereco = endereco
+         self.cnpj = cnpj
+         self.contato = contato
