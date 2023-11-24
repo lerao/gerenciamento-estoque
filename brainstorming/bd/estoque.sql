@@ -98,3 +98,15 @@ CREATE TABLE `clientes` (
   `data_nascimento` date,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE 'vendas' (
+    'id' INT PRIMARY KEY AUTO_INCREMENT,
+    'id_cliente' varchar(80) NOT NULL,
+    'id_produto' int(11) NULL DEFAULT NULL,,
+    `nome` varchar(255),
+    'valor_unitario' DECIMAL(10, 2),
+    'valor_total' DECIMAL(10, 2),
+    'data_venda' TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id),
+    FOREIGN KEY (id_produto) REFERENCES produtos(cod)
+);

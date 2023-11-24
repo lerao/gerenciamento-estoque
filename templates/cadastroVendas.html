@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Cadastro de Vendas
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block conteudo %}
+
+
+<h2>Cadastro de Vendas</h2>
+
+<!-- Formulário de Cadastro de Vendas (PDV) -->
+<form action="processar_venda.php" method="POST">
+    <div class="form-group">
+        <label for="nome_cliente">Nome do Cliente:</label>
+        <select class="form-control" id="nome_cliente" name="nome_cliente" required>
+            {% for cliente in dados %}
+            <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="produto">Produto:</label>
+        <!-- Dropdown de nomes de produtos -->
+        <select class="form-control" id="produto" name="produto" required>
+            {% for produto in lista_produtos %}
+            <option value="{{ produto.cod }}">{{ produto.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+    </div>
+
+
+    <button type="button" class="btn btn-primary" onclick="adicionarProduto()">Adicionar Produto</button>
+</form>
+<!-- Fim do Formulário de Cadastro de Vendas (PDV) -->
+
+<!-- Lista de Produtos Comprados -->
+<div class="mt-4">
+    <h3>Produtos Comprados</h3>
+    <ul id="lista_produtos">
+        <!-- Os produtos comprados serão exibidos aqui -->
+    </ul>
+</div>
+<!-- Fim da Lista de Produtos Comprados -->
+
+<!-- Valor Total da Compra -->
+<div class="mt-4">
+    <h3>Valor Total da Compra: <span id="valor_total">R$ 0.00</span></h3>
+</div>
+<!-- Fim do Valor Total da Compra -->
+
+<!-- Botão para Finalizar Compra -->
+<div class="mt-4">
+    <button type="button" class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+<!-- Fim do Botão para Finalizar Compra -->
+
+</div>
+</div>
+
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="dist/js/jquery-ui.min.js"></script>
+<script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="assets/extra-libs/sparkline/sparkline.js"></script>
+<script src="dist/js/waves.js"></script>
+<script src="dist/js/sidebarmenu.js"></script>
+<script src="dist/js/custom.min.js"></script>
+<script src="assets/libs/moment/min/moment.min.js"></script>
+
+<script>
+    // Variável para armazenar os produtos comprados
+    var produtosComprados = [];
+
+    // Função para atualizar o valor total
+    function atualizarValorTotal() {
+        var valorTotal = 0;
+        produtosComprados.forEach(function (produto) {
+            valorTotal += parseFloat(produto.valor) * parseInt(produto.quantidade);
+        });
+        document.getElementById('valor_total').textContent = 'R$ ' + valorTotal.toFixed(2);
+    }
+
+    // Função para adicionar produtos comprados à lista
+    function adicionarProduto() {
+        var nomeProduto = document.getElementById('produto').value;
+        var valorProduto = document.getElementById('valor').value;
+        var quantidadeProduto = document.getElementById('quantidade').value;
+
+        var produto = {
+            nome: nomeProduto,
+            valor: valorProduto,
+            quantidade: quantidadeProduto
+        };
+
+        produtosComprados.push(produto);
+
+        var listaProdutos = document.getElementById('lista_produtos');
+        var itemLista = document.createElement('li');
+        itemLista.textContent = nomeProduto + ' - Valor: R$ ' + valorProduto + ' - Quantidade: ' + quantidadeProduto + ' - Valor Total: R$ ' + (parseFloat(valorProduto) * parseInt(quantidadeProduto)).toFixed(2);
+        listaProdutos.appendChild(itemLista);
+
+        // Atualizar o valor total
+        atualizarValorTotal();
+
+        // Limpar campos do formulário após adicionar à lista
+        document.getElementById('produto').value = '';
+        document.getElementById('valor').value = '';
+        document.getElementById('quantidade').value = '';
+    }
+
+    // Função para finalizar a compra e enviar os dados
+    function finalizarCompra() {
+        // Enviar os produtosComprados para o servidor ou realizar qualquer outra ação necessária
+        console.log(produtosComprados);
+    }
+</script>
+</body>
+
+</html>
+
+{% endblock %}
