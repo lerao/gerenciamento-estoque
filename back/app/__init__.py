@@ -12,3 +12,6 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db) 
 
 from app import routes
+
+with app.app_context():
+    db.create_all()

@@ -18,3 +18,12 @@ class Casa(db.Model):
         self.qtdQuartos = qtdQuartos
         self.qtdBanheiros = qtdBanheiros
         self.rua = rua
+
+class Atividade(db.Model):
+    id_atividade = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String)
+    status = db.Column(db.String)
+
+    def __init__(self, nome, status):
+        self.nome=nome
+        self.status=status

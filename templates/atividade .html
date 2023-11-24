@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Atividades
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block conteudo %}
+
+  <h2>Cadastro de Atividade</h2>
+ 
+  <form id="atividadeForm" action="http://127.0.0.1:5001/novaAtividade" method="post">
+      <div class="form-group">
+          <label for="nomeAtividade">Nome da Atividade:</label>
+          <input type="text" 
+                    class="form-control" 
+                    id="nomeAtividade" 
+                    placeholder="Ex: limpeza" 
+                    name="nomeAtividade"
+                    
+                    required>
+            <label for = "status"> status</label>
+            <select type="text" id="status" name="status">
+                <option>iniciar</option>
+                <option>em andamento</option>
+                <option>finalizado</option>
+            </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary"></button>
+  </form>
+  
+  {% if atividades %}
+  <br><br>
+  <h2>Lista de Atividade</h2>
+    <div class="table-responsive">
+        <table id="tabelaAtividades" class="table table-striped table-sm table-bordered bg-white">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Atividade</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for atividade in atividades %}
+            <tr>
+                <td>{{atividade.id_atividade}}</td>
+                <td>{{atividade.nome}}</td>
+                <td>{{atividade.status}}</td>
+                
+                    <a class="btn btn-warning btn-xs"
+                        href="/editAtividade/{{atividade.id_atividade}}">
+                        <i class="fas fa-edit"></i>
+                    EDITAR</a>
+                    
+                    <a class="btn btn-danger btn-xs"
+                        href="/del_atividade/{{atividade.id_atividade}}">
+                        <i class="far fa-times-circle"></i>
+                    EXCLUIR</a>
+            
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block js %}
+    <script type='text/javascript'>
+    $(document).ready(function() {
+        $('#tabelaAtividade').DataTable();
+    });
+    </script>
+{% endblock %}
