@@ -123,6 +123,70 @@ def delete_cliente(cliente_id):
     db.session.delete(cliente)
     db.session.commit()
     return jsonify({'status': 200, 'message': 'Cliente deletado com sucesso'}), 200
+#######################################fornecedores######################################################
+
+#Listar Fornecedores 
+
+@app.route("/fornecedores", methods=['GET'])
+def get_fornecedores():
+    fornecedores = Fornecedores.query.all()
+    lista_fornecedores = []
+    for fornecedores in fornecedores:
+        lista_fornecedores.append({
+            'id': fornecedores.id,
+            'razao_social': fornecedores.razao_social,
+            'nome_fantasia': fornecedores.nome_fantasia,
+            'endereco': fornecedores.endereco,
+            'cnpj': fornecedores.cnpj,
+            'contato': fornecedores.contato
+            })
+
+    return jsonify(lista_fornecedores)
+
+#criar fornecedor
+@app.route("/fornecedores", methods=['POST'])
+def create_fornecedores():
+    dados = request.json
+    _razao_social = dados["razao_social"]
+    _nome_fantasia = dados["nome_fantasia"]
+    _endereco = dados["endereco"]
+    _cnpj = dados["cnpj"]
+    _contato = dados["contato"]
+
+    fornecedores = Fornecedores(razao_social=_razao_social, nome_fantasia=_nome_fantasia, endereco=_endereco, cnpj = _cnpj, contato=_contato)
+    db.session.add(fornecedores)
+    db.session.commit()
+    return jsonify({'status': 201, 'message': 'Casa criada com sucesso'}), 201
+
+#Atualizar Fornecedor 
+
+@app.route('/fornecedores/<int:fornecedores>', methods=['PUT'])
+def update_fornecedores(fornecedores_id):
+    fornecedores = Fornecedores.query.get(fornecedores_id)
+    if fornecedores is None:
+        return jsonify({'error':404,'mensage': 'Fornecedor não encontrada'}), 404
+    
+    data = request.json
+    
+    fornecedores.razao_social = data['razao_social']
+    fornecedores.nome_fantasia = data['nome_fantasia']
+    fornecedores.endereco = data['endereco']
+    fornecedores.cnpj = data['cnpj']
+    fornecedores.contato = data['contato']
+    
+    db.session.commit()
+    
+    return jsonify({'status':200,'message': 'Fornecedor atualizado com sucesso'}), 200
+
+#Remover fonecedor 
+@app.route('/fornecedor/<int:fornecedor_id>', methods=['DELETE'])
+def delete_categoria(fornecedor_id):
+    fornecedores = Fornecedores.query.get(fornecedor_id)
+    if fornecedores is None:
+        return jsonify({'error':404,'message': 'Categoria não encontrada'}), 404
+    db.session.delete(fornecedores)
+    db.session.commit()
+    return jsonify({'message':200, 'message': 'Categoria excluída com sucesso'}), 200
 
 
 
