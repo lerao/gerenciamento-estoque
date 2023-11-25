@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Vendedores
+{% endblock %}
+
+{% block css %}{% endblock %} 
+
+{% block conteudo %}
+  <h2>Formulário de Cadastro de Vendedores</h2>
+
+  <form id="vendedorForm" action="/vendedores/adicionar" method="post">
+      <div class="form-group">
+          <label for="nome">Nome do Vendedor:</label>
+          <input type="text" 
+                    class="form-control" 
+                    id="nome" 
+                    placeholder="Ex: Maria Vendedora" 
+                    name="nome"
+                    value="{{ vendedor[0][1] if vendedor else '' }}"
+                    required>
+      </div>
+
+      <div class="form-group">
+          <label for="cpf">CPF:</label>
+          <input type="text" 
+                    class="form-control" 
+                    id="cpf" 
+                    placeholder="Ex: 123.456.789-00" 
+                    name="cpf"
+                    value="{{ vendedor[0][2] if vendedor else '' }}"
+                    required>
+      </div>
+
+      <div class="form-group">
+          <label for="endereco">Endereço:</label>
+          <input type="text" 
+                    class="form-control" 
+                    id="endereco" 
+                    placeholder="Ex: Rua ABC, Nº 123" 
+                    name="endereco"
+                    value="{{ vendedor[0][3] if vendedor else '' }}"
+                    required>
+      </div>
+
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" 
+                    class="form-control" 
+                    id="email" 
+                    placeholder="Ex: maria@example.com" 
+                    name="email"
+                    value="{{ vendedor[0][4] if vendedor else '' }}"
+                    required>
+      </div>
+
+      <input type="hidden" name="id" value="{{ vendedor[0][0] if vendedor else '' }}">
+
+      <button type="submit" class="btn btn-primary">
+        {% if vendedor %}
+          Atualizar 
+        {% else %}
+          Adicionar 
+        {% endif %}
+        Vendedor
+      </button>
+  </form>
+
+{% endblock %}
